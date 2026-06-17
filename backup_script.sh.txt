@@ -1,0 +1,21 @@
+#!/bin/bash
+# ================================================================
+# Резервное копирование базы security_db с шифрованием GPG (AES256)
+# ================================================================
+
+DB_NAME="security_db"
+BACKUP_FILE="/tmp/${DB_NAME}_$(date +%Y%m%d_%H%M%S).sql"
+PASSPHRASE="Farmstandart2026!"        
+
+# 1. Создаём дамп (без паролей, через --no-password)
+sudo -u postgres pg_dump --no-password -U postgres -d $DB_NAME -F p > $BACKUP_FILE
+
+# 2. Шифруем дамп симметрично (AES256)
+gpg --symmetric --cipher-algo AES256 --batch --passphrase "$PASSPHRASE" $BACKUP_FILE
+
+# 3. Удаляем незашифрованный файл
+rm -f $BACKUP_FILE
+
+# 4. Выводим информацию
+echo "Резервная копия создана: ${BACKUP_FILE}.gpg"
+echo "Пароль для расшифровки: $PASSPHRASE"
