@@ -1,0 +1,11 @@
+groups:
+  - name: systemd_alerts
+    rules:
+      - alert: AuditdServiceDown
+        expr: node_systemd_unit_state{name="auditd"} != 1
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Служба auditd не запущена на {{ $labels.instance }}"
+          description: "Метрика = {{ $value }} (должна быть 1) уже минуту."

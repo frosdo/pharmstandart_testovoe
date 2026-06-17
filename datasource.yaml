@@ -1,0 +1,4 @@
+# Добавление Prometheus как источника в Grafana
+# Через UI: Configuration -> Data Sources -> Prometheus, URL=http://localhost:9090
+# Через API (пример с токеном):
+# curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <TOKEN>" -d '{"name":"Prometheus","type":"prometheus","access":"proxy","url":"http://localhost:9090","isDefault":true}' http://localhost:3000/api/datasources
