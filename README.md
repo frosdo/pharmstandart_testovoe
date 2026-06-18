@@ -79,7 +79,7 @@ PostgreSQL, автоматизировал деплой через Ansible на 
 
 4. Grafana + Prometheus 
 4.1. Источник данных
-Добавил в Grafana источник Prometheus (http://localhost:9090). В `datasource.yaml` привёл команду для автоматического добавления через API на случай, если кто-то захочет автоматизировать.
+Добавил в Grafana источник Prometheus (http://localhost:9090). В `datasource.yaml` привёл команду для автоматического добавления через API
 
 4.2. Дашборд для auditd
 Создал панель с графиком метрики `node_systemd_unit_state{name="auditd"}`, добавил переменную `$instance`, чтобы можно было выбирать хост. Экспортировал в JSON, лежит в `dashboard.json`.
