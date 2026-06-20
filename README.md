@@ -12,6 +12,8 @@ PostgreSQL, автоматизировал деплой через Ansible на 
 1.1. Идентификация ОС
 вбил команду `cat /etc/astra_version` увидел 1.8.1. Проверил, что модуль PARSEC загружен (`lsmod | grep parsec`). Целостность пакетов проверил через `dpkg -V`.
 
+sudo systemctl status parsec
+
 1.2. Аудит входов (логи успешных/неудачных попыток)
 сделал правила auditd в `/etc/audit/rules.d/audit.rules`:
 - логировал `execve` для `/bin/login`
